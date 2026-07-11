@@ -13,29 +13,35 @@ export default function WeToggle() {
 
   return (
     <span
-      className="we"
+      className={`we${open ? ' is-open' : ''}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setOpen(false)
+        }
+      }}
       onClick={() => setOpen((v) => !v)}
     >
-      {open ? (
-        <span>
-          {PEOPLE.map((p, i) => (
-            <span key={p.name}>
-              {i > 0 && ' & '}
-              <a
-                className="we-name"
-                href={p.href}
-                {...(p.external && { target: '_blank', rel: 'noopener' })}
-              >
-                {p.name}
-              </a>
-            </span>
-          ))}
-        </span>
-      ) : (
+      <span className="we-state we-state-closed">
         <span className="we-word">we</span>
-      )}
+      </span>
+      <span className="we-state we-state-open" aria-hidden={!open}>
+        {PEOPLE.map((p, i) => (
+          <span key={p.name}>
+            {i > 0 && ' & '}
+            <a
+              className="we-name"
+              href={p.href}
+              tabIndex={open ? 0 : -1}
+              {...(p.external && { target: '_blank', rel: 'noopener' })}
+            >
+              {p.name}
+            </a>
+          </span>
+        ))}
+      </span>
     </span>
   )
 }
