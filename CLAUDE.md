@@ -24,7 +24,6 @@ This repo is a lightweight portfolio holder for Inkling projects. Keep the work 
 - Add data close to where it is rendered unless project growth justifies extraction.
 - Use stable relative paths because `vite.config.js` sets `base: './'`.
 - Run `npm run build` before pushing changes.
-- Do not remove `project/` or `chats/`; they preserve the design handoff context.
 
 ## Relevant Skills
 

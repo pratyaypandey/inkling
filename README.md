@@ -59,8 +59,6 @@ src/
     GraphMark.jsx          small network mark
   styles.css               visual system and layout
   tokens.js                JavaScript mirror of core colors
-project/                   original Claude Design handoff files
-chats/                     design transcript from the handoff
 ```
 
 ## Adding A Project
