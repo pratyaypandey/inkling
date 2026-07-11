@@ -1,25 +1,80 @@
-# CODING AGENTS: READ THIS FIRST
+# inkling
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Inkling is a lightweight home for small AI projects, demos, experiments, and the repositories behind them.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+The site is intentionally spare: a warm paper page, a small wordmark, and a growing `~/projects` list. It should feel like a portfolio holder rather than a product homepage. The work is the focus.
 
-## What you should do — IMPORTANT
+## What Lives Here
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+- A front page for Inkling and the people behind it.
+- Links to demos, project pages, and external repositories.
+- A place to collect one-off experiments without turning each one into a full site.
+- Design language and agent guidance for keeping future additions coherent.
 
-**Read `project/Inkling Front Page.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## Design Direction
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+Inkling should stay quiet, legible, and expressive through restraint.
 
-## About the design files
+- Use warm paper, dark ink, muted text, fine rules, and one vermilion accent.
+- Prefer monospace typography and copy that reads like a short note or source comment.
+- Keep the front page sparse. Add density in project detail pages, not in the masthead.
+- Treat each project row as a doorway: title, arrow, one sentence, then a demo or repo link.
+- Avoid generic SaaS polish, oversized marketing sections, decorative cards, and broad gradients.
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## Local Development
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+Install dependencies:
 
-## Bundle contents
+```sh
+npm install
+```
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Inkling portfolio front page` project files (HTML prototypes, assets, components)
+Run the dev server:
+
+```sh
+npm run dev
+```
+
+Build for production:
+
+```sh
+npm run build
+```
+
+Preview the production build:
+
+```sh
+npm run preview
+```
+
+## Project Structure
+
+```text
+src/
+  App.jsx                  page shell
+  components/
+    Masthead.jsx           wordmark and tagline
+    Projects.jsx           project list data and rows
+    WeToggle.jsx           people reveal interaction
+    GraphMark.jsx          small network mark
+  styles.css               visual system and layout
+  tokens.js                JavaScript mirror of core colors
+project/                   original Claude Design handoff files
+chats/                     design transcript from the handoff
+```
+
+## Adding A Project
+
+Start in `src/components/Projects.jsx`.
+
+Each project should have:
+
+- `name`: the display title.
+- `href`: a demo page, sub-page, or external repository.
+- `desc`: one quiet sentence describing what the viewer can expect.
+
+For projects that need more than a row, add a focused page or route and link to it from the list. Keep the front page as the index.
+
+## Agent Notes
+
+Claude-facing guidance lives in `CLAUDE.md` and `.claude/skills/`. Use those files when extending the design language, adding demo pages, or connecting projects to other repositories.
